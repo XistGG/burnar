@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Your secret link is ready.</p>
+<div class="secret-url" id="secretLink">{{ link }}</div>
+<p>Share this link. It can only be viewed once.</p>
+<div class="actions">
+    <button onclick="copyToClipboard()">Copy Link</button>
+    <button onclick="window.location.href='/'"
+        style="background: transparent; border: 1px solid var(--border-color);">Create Another</button>
+</div>
+
+<script>
+    function copyToClipboard() {
+        const linkText = document.getElementById("secretLink").innerText;
+        navigator.clipboard.writeText(linkText).then(() => {
+            alert("Link copied to clipboard!");
+        });
+    }
+</script>
+{% endblock %}

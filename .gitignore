@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Distribution (deploy.ps1)
+dist/
+
+# Virtual Environments
+.venv/
+.env
+
+# Project Storage
+data/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+
+# Docker
+docker-compose.override.yml

@@ -1,0 +1,8 @@
+services:
+  burnar:
+    build: .
+    ports:
+      - "8248:8248"
+    volumes:
+      - ./app:/app/app
+    command: uv run uvicorn app.main:app --host 0.0.0.0 --port 8248 --reload

@@ -19,3 +19,6 @@ See `ROADMAP.md` for known issues, current and future plans.
 - **Language**: Python 3.11
 - **Dependency Management**: `uv`
 - **Containerization**: Docker (via `docker-compose`)
+
+## Coding Standards
+- **Path Formatting**: ALWAYS use POSIX format (e.g., `./path/to/file`) for file paths. NEVER use Windows backslashes (e.g., `.\path\to\file`), even on Windows.

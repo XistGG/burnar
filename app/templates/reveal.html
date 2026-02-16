@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>You have received a secure secret.</p>
+<p>This secret will self-destruct immediately after viewing.</p>
+
+<form action="/secret/{{ uuid }}" method="post" id="revealForm">
+    <input type="hidden" name="key" id="keyInput">
+    <button type="submit">Reveal Secret</button>
+</form>
+
+<script>
+    // Extract key from URL fragment
+    const hash = window.location.hash;
+    if (hash) {
+        // Remove the '#' character
+        const key = hash.substring(1);
+        document.getElementById('keyInput').value = key;
+    } else {
+        // If no hash, maybe query param? Or user must provide it manually?
+        // For this version we assume fragment.
+        // If missing, submission will fail or user prompted?
+        // Let's add a prompt if missing?
+        // Or just let it fail server side if empty.
+    }
+</script>
+{% endblock %}
