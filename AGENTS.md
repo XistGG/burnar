@@ -1,0 +1,21 @@
+# burnar - Burn After Reading
+
+MIT Licensed secure ephemeral content sharing application.
+
+## Project Overview
+
+**burnar** is a web application add-on that provides secure, ephemeral content sharing with automatic expiration. Content "burns after reading" - self-destructing after being viewed or after a time limit expires.
+
+See `ROADMAP.md` for known issues, current and future plans.
+
+### Key Characteristics
+
+- **Add-on Architecture**: Designed to integrate with existing web installations
+- **Target Platform**: Linux with HTTPS (security-first approach)
+- **License**: MIT
+- **Security Focus**: End-to-end encryption, no persistent storage of sensitive content
+
+## Development Environment
+- **Language**: Python 3.11
+- **Dependency Management**: `uv`
+- **Containerization**: Docker (via `docker-compose`)
