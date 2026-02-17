@@ -6,22 +6,10 @@ Planned improvements and known issues for the burnar project.
 
 ## Planned
 
-### 🎨 Update Color Scheme to Match x157.github.io
+### 🎨 Update Color Scheme to Match x157.github.io [COMPLETED]
 
 Restyle the web UI to match the terminal/hacker aesthetic of
 [x157.github.io](https://x157.github.io).
-
-**Current colors** (in `app/static/style.css`):
-
-| Token              | Current Value                   |
-|--------------------|---------------------------------|
-| `--bg-color`       | `#121212` (dark gray)           |
-| `--text-color`     | `#e0e0e0` (light gray)         |
-| `--primary-color`  | `#ff3d00` (red-orange)         |
-| `--secondary-color`| `#292929` (dark gray)          |
-| `--accent-color`   | `#ff9100` (orange)             |
-| `--card-bg`        | `rgba(255,255,255,0.05)`       |
-| `--border-color`   | `rgba(255,255,255,0.1)`        |
 
 **Target colors** (extracted from x157.github.io):
 
@@ -39,14 +27,14 @@ Restyle the web UI to match the terminal/hacker aesthetic of
 
 **Tasks:**
 
-- [ ] Update CSS custom properties in `app/static/style.css`
-- [ ] Switch font stack to monospace (Verdana → monospace fallback chain)
-- [ ] Change heading gradient to solid `#00cc00`
-- [ ] Change button gradient to green tones
-- [ ] Update link styles (lavender default, gold hover)
-- [ ] Use dashed green borders instead of solid subtle ones
-- [ ] Add subtle `text-shadow` glow on headings (`rgba(181,232,83,0.1)`)
-- [ ] Verify all pages render correctly with new scheme
+- [x] Update CSS custom properties in `app/static/style.css`
+- [x] Switch font stack to monospace (Verdana → monospace fallback chain)
+- [x] Change heading gradient to solid `#00cc00`
+- [x] Change button gradient to green tones
+- [x] Update link styles (lavender default, gold hover)
+- [x] Use dashed green borders instead of solid subtle ones
+- [x] Add subtle `text-shadow` glow on headings (`rgba(181,232,83,0.1)`)
+- [x] Verify all pages render correctly with new scheme
 
 ---
 
@@ -56,6 +44,8 @@ Add a command-line interface to inspect and manage the burnar data directory
 without needing the web UI.
 
 **Proposed command:** `burnar-cli` (or `python -m app.cli`)
+
+User comment: Use `./bin/burnar.ps1` instead of `burnar-cli` and make sure `burnar.ps1` is fully cross-platform, supporting `-Debug`, `-Verbose` and `-Help`.
 
 #### Subcommands
 
@@ -109,4 +99,4 @@ _None currently tracked._
 
 ## Completed
 
-_No items completed yet._
+- [x] **🎨 Restyle UI to Xist.GG Colors**: Transitioned app from orange theme to the green/monospace/terminal aesthetic.
