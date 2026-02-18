@@ -2,7 +2,7 @@
 
 {% block content %}
 <p>Create a secure, self-destructing secret.</p>
-<form action="/create" method="post">
+<form action="{{ root_rel|default('.') }}/create" method="post">
     <textarea name="content" placeholder="Enter your secret message here..." required></textarea>
     <button type="submit">Create Secret Link</button>
 </form>
