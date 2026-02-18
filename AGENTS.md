@@ -22,3 +22,9 @@ See `ROADMAP.md` for known issues, current and future plans.
 
 ## Coding Standards
 - **Path Formatting**: ALWAYS use POSIX format (e.g., `./path/to/file`) for file paths. NEVER use Windows backslashes (e.g., `.\path\to\file`), even on Windows.
+
+## Deployment Operations
+- **Restarting the Service**: After updating the application code or configuration, you **MUST** restart the service for changes to take effect:
+  ```bash
+  sudo systemctl restart burnar
+  ```

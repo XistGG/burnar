@@ -58,6 +58,12 @@ server {
     # ... existing SSL, root, and other location blocks ...
 
     # ── Burnar reverse proxy ──────────────────────────────────
+    
+    # Redirect /burnar -> /burnar/ (enforce trailing slash)
+    location = /burnar {
+        return 301 /burnar/;
+    }
+
     location /burnar/ {
         proxy_pass http://127.0.0.1:8248/;   # trailing slash strips the prefix
         proxy_set_header Host              $host;
@@ -112,6 +118,9 @@ Then add to your **existing** `<VirtualHost>`:
 
     # ── Burnar reverse proxy ──────────────────────────────────
     ProxyPreserveHost On
+
+    # Redirect /burnar -> /burnar/ (enforce trailing slash)
+    RedirectMatch permanent ^/burnar$ /burnar/
 
     ProxyPass        /burnar/ http://127.0.0.1:8248/
     ProxyPassReverse /burnar/ http://127.0.0.1:8248/
@@ -238,3 +247,14 @@ If any of these return `404` or `502`:
 - [ ] **Firewall** — Port 8248 is not externally reachable.
 - [ ] **Data directory** — `./data/` is not under the web docroot.
 - [ ] **File permissions** — `./data/` is owned by the service user with `700`.
+
+---
+
+## 7. Updating Burnar
+
+Whenever you update the application code (e.g. `git pull`), you **MUST** restart
+the service for changes to take effect:
+
+```bash
+sudo systemctl restart burnar
+```
