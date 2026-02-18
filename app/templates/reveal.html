@@ -4,7 +4,7 @@
 <p>You have received a secure secret.</p>
 <p>This secret will self-destruct immediately after viewing.</p>
 
-<form action="/secret/{{ uuid }}" method="post" id="revealForm">
+<form action="{{ root_rel|default('.') }}/secret/{{ uuid }}" method="post" id="revealForm">
     <input type="hidden" name="key" id="keyInput">
     <button type="submit">Reveal Secret</button>
 </form>

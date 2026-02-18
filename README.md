@@ -19,8 +19,22 @@ Burnar is a secure, ephemeral content sharing application ("Burn After Reading")
 
 ### Production
 
-1.  Copy the application to your server.
-2.  Run `bin/deploy.ps1`.
+Burnar is designed to run behind an Nginx or Apache reverse proxy at a sub-path
+(e.g. `https://site.com/burnar/`).  Launch uvicorn with `--root-path /burnar`
+and point a `proxy_pass` / `ProxyPass` directive at `127.0.0.1:8248`.
+
+See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for full Nginx/Apache configuration,
+systemd/Docker setup, and a security checklist.
+
+> **Troubleshooting:** See [`TROUBLESHOOTING.md`](./TROUBLESHOOTING.md) if you encounter startup errors like "Permission denied".
+
+## Limitations
+
+Burnar uses local file locking ([portalocker](https://pypi.org/project/portalocker/))
+to guard concurrent access to secrets on disk.  File locks are per-host and do
+not synchronize across machines, so **burnar must run on a single server**.
+Multi-server or load-balanced deployments would require replacing the storage
+backend with a shared store (e.g. Redis, a database).
 
 ## License
 
