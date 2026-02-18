@@ -37,7 +37,7 @@ templates = Jinja2Templates(directory="app/templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse(request=request, name="index.html", context={"root_rel": "."})
+    return templates.TemplateResponse(request=request, name="index.html", context={})
 
 @app.post("/create", response_class=HTMLResponse)
 async def create_secret(request: Request, content: str = Form(...)):
@@ -51,13 +51,13 @@ async def create_secret(request: Request, content: str = Form(...)):
     secret_url = request.url_for('view_secret', uuid=secret_uuid)
     full_link = f"{secret_url}#{key}"
     
-    return templates.TemplateResponse(request=request, name="link.html", context={"link": full_link, "root_rel": "."})
+    return templates.TemplateResponse(request=request, name="link.html", context={"link": full_link})
 
 @app.get("/secret/{uuid}", response_class=HTMLResponse, name="view_secret")
 async def view_secret(request: Request, uuid: str):
     if not storage.exists(uuid):
-        return templates.TemplateResponse(request=request, name="error.html", context={"message": "Secret not found or already burned.", "root_rel": ".."})
-    return templates.TemplateResponse(request=request, name="reveal.html", context={"uuid": uuid, "root_rel": ".."})
+        return templates.TemplateResponse(request=request, name="error.html", context={"message": "Secret not found or already burned."})
+    return templates.TemplateResponse(request=request, name="reveal.html", context={"uuid": uuid})
 
 @app.post("/secret/{uuid}", response_class=HTMLResponse)
 async def reveal_secret(request: Request, uuid: str, key: str = Form(...)):
@@ -67,11 +67,11 @@ async def reveal_secret(request: Request, uuid: str, key: str = Form(...)):
     storage.delete(uuid)
     
     if not encrypted_data:
-         return templates.TemplateResponse(request=request, name="error.html", context={"message": "Secret not found or already burned.", "root_rel": ".."})
+         return templates.TemplateResponse(request=request, name="error.html", context={"message": "Secret not found or already burned."})
     
     try:
         decrypted_content = crypto.decrypt(encrypted_data, key)
     except Exception:
-        return templates.TemplateResponse(request=request, name="error.html", context={"message": "Invalid key or data corruption.", "root_rel": ".."})
+        return templates.TemplateResponse(request=request, name="error.html", context={"message": "Invalid key or data corruption."})
         
-    return templates.TemplateResponse(request=request, name="secret.html", context={"content": decrypted_content, "root_rel": ".."})
+    return templates.TemplateResponse(request=request, name="secret.html", context={"content": decrypted_content})

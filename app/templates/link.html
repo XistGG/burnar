@@ -6,7 +6,7 @@
 <p>Share this link. It can only be viewed once.</p>
 <div class="actions">
     <button onclick="copyToClipboard()">Copy Link</button>
-    <button onclick="window.location.href='{{ root_rel|default('.') }}/'"
+    <button onclick="window.location.href='{{ url_for('read_root') }}';"
         style="background: transparent; border: 1px solid var(--border-color);">Create Another</button>
 </div>
 

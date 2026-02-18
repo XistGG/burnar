@@ -5,5 +5,5 @@
     <h2>Error</h2>
     <p>{{ message }}</p>
 </div>
-<button onclick="window.location.href='{{ root_rel|default('.') }}/'">Go Home</button>
+<button onclick="window.location.href='{{ url_for('read_root') }}';">Go Home</button>
 {% endblock %}
