@@ -9,6 +9,19 @@ Burnar is a secure, ephemeral content sharing application ("Burn After Reading")
 - **No Database**: Uses file-based storage with locking mechanisms.
 - **Dockerized**: Easy to run via Docker.
 
+## Example Usage
+
+### Alice shares a secret with Bob
+
+1.  **Creation**: Alice needs to send a sensitive password to Bob. She opens her Burnar instance, types the password into the secure text box, and clicks **"Create Secret Link"**.
+2.  **Sharing**: Burnar generates a unique, one-time URL. Alice copies this link and sends it to Bob via her preferred chat app.
+3.  **Viewing**: Bob clicks the link. The secret is displayed on his screen.
+4.  **Destruction**: Immediately after the secret is retrieved for Bob, it is permanently deleted from the server. If Bob refreshes the page or if anyone else clicks the link later, they will see a simplified page indicating the secret is gone.
+
+[![Burnar Screenshot](images/burnar-xist-gg.png)](https://xist.gg/burnar/)
+
+[**Try the live demo at xist.gg/burnar/**](https://xist.gg/burnar/)
+
 ## Quick Start
 
 ### Development
