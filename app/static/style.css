@@ -218,3 +218,57 @@ pre {
     border-left: 3px solid var(--primary-color);
     color: var(--primary-color);
 }
+
+/* ── Copy Button: "✓ Copied" state ── */
+button.copied {
+    background: rgba(0, 204, 0, 0.15);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    animation: copied-pulse 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+@keyframes copied-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ── Secret Notice: "You have received a secure secret" ── */
+.secret-notice-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #4b0082;
+    -webkit-text-stroke: 0.6px var(--primary-color);
+    text-shadow: 0 0 6px rgba(0, 204, 0, 0.35);
+    margin-bottom: 0.5rem;
+}
+
+/* ── Deleted Notice: alert color ── */
+.deleted-notice {
+    color: #ff3333;
+    font-weight: 600;
+    border: 1px dashed #ff3333;
+    padding: 0.6rem 1rem;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* ── Clickable Card (reveal page) ── */
+.card.clickable-card {
+    cursor: pointer;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.card.clickable-card:hover {
+    border-color: var(--link-color);
+    box-shadow: var(--shadow), 0 0 18px rgba(221, 170, 221, 0.15);
+}

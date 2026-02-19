@@ -5,17 +5,45 @@
 <div class="secret-url" id="secretLink">{{ link }}</div>
 <p>Share this link. It can only be viewed once.</p>
 <div class="actions">
-    <button onclick="copyToClipboard()">Copy Link</button>
+    <button id="copyBtn" onclick="copyToClipboard()">Copy Link</button>
     <button onclick="window.location.href='{{ url_for('read_root') }}';"
         style="background: transparent; border: 1px solid var(--border-color);">Create Another</button>
 </div>
 
 <script>
     function copyToClipboard() {
+        const btn = document.getElementById("copyBtn");
         const linkText = document.getElementById("secretLink").innerText;
-        navigator.clipboard.writeText(linkText).then(() => {
-            alert("Link copied to clipboard!");
-        });
+
+        function showCopied() {
+            btn.textContent = "\u2713 Copied";
+            btn.classList.add("copied");
+            setTimeout(() => {
+                btn.textContent = "Copy Link";
+                btn.classList.remove("copied");
+            }, 2000);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(linkText).then(showCopied).catch(() => {
+                fallbackCopy(linkText);
+                showCopied();
+            });
+        } else {
+            fallbackCopy(linkText);
+            showCopied();
+        }
+    }
+
+    function fallbackCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
     }
 </script>
 {% endblock %}

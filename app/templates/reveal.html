@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>You have received a secure secret.</p>
+<p class="secret-notice-text">You have received a secure secret.</p>
 <p>This secret will self-destruct immediately after viewing.</p>
 
 <form action="{{ url_for('reveal_secret', uuid=uuid) }}" method="post" id="revealForm">
@@ -13,15 +13,17 @@
     // Extract key from URL fragment
     const hash = window.location.hash;
     if (hash) {
-        // Remove the '#' character
         const key = hash.substring(1);
         document.getElementById('keyInput').value = key;
-    } else {
-        // If no hash, maybe query param? Or user must provide it manually?
-        // For this version we assume fragment.
-        // If missing, submission will fail or user prompted?
-        // Let's add a prompt if missing?
-        // Or just let it fail server side if empty.
     }
+
+    // Make the entire card clickable to reveal the secret
+    const card = document.querySelector('.card');
+    card.classList.add('clickable-card');
+    card.addEventListener('click', function (e) {
+        // Don't double-submit if user clicked the button itself
+        if (e.target.closest('button')) return;
+        document.getElementById('revealForm').submit();
+    });
 </script>
 {% endblock %}
